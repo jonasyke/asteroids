@@ -2,6 +2,8 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+from player import Player
+from circleshape import CircleShape
 from constants import *
 def main():
     pygame.init()    
@@ -13,6 +15,10 @@ def main():
     
     clock = pygame.time.Clock()
     dt = 0
+    
+    px = SCREEN_WIDTH / 2
+    py = SCREEN_HEIGHT / 2
+    player = Player(px, py)
 
     while True:
         for event in pygame.event.get():
@@ -20,6 +26,7 @@ def main():
                 return
 
         screen.fill((0,0,0))
+        player.draw(screen)
         pygame.display.flip()
         dt = clock.tick(60) / 1000.0
 
