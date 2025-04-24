@@ -5,6 +5,8 @@ import pygame
 from player import Player
 from circleshape import CircleShape
 from constants import *
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 def main():
     pygame.init()    
     print("Starting Asteroids!")
@@ -18,10 +20,19 @@ def main():
 
     updateable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+    asteroidfield = pygame.sprite.Group()
+
+    AsteroidField.containers = (asteroidfield, updateable)
+
+    Asteroid.containers = (asteroids, updateable, drawable)
 
     Player.containers = (updateable, drawable)
 
+
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    
+    asteroidfield = AsteroidField()
 
     while True:
         for event in pygame.event.get():
